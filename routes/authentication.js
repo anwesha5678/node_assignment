@@ -1,6 +1,7 @@
 const _ = require('lodash');
-let tokenFind = require('../utils/token')
-
+//let tokenFind = require('../utils/token')
+const passport = require('passport');
+const passportJwt = require('passport-jwt');
 module.exports =async (req, res, next)=>{
     const token = req.headers['x-access-token']
     if(token){

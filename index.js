@@ -6,7 +6,9 @@ let bodyParser = require('body-parser');
 const dishRouter = require('./routes/dishRouter')
 const leadersRouter = require('./routes/leaders')
 const promotionsRouter = require('./routes/promotions')
-
+const usersRouter = require('./routes/user')
+var session = require('express-session');
+var passport = require('passport');
 
 const hostname  = 'localhost';
 const port = 3000;
@@ -24,7 +26,12 @@ app.use(bodyParser.json())
 app.use('/dishes',dishRouter)
 app.use('/leaders',leadersRouter)
 app.use('/promotions',promotionsRouter)
-
+app.use('/user',usersRouter)
+app.use(session({
+    secret:'thesecrettoken',
+    saveUninitialized:false,
+    resave:false
+}))
 
 app.use(express.static(__dirname+ '/public'))
 
